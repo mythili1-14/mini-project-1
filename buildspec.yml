@@ -26,11 +26,14 @@ phases:
       - echo "Deploying to EKS..."
       - echo "--- DEBUG:deployment.yaml content ---"
       - cat k8s/deployment.yaml
+
+      - echo "--- Configuring kubectl for EKS ---"
+      - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster
+
       - echo "--- DEBUG:current kubectl context ---"
       - kubectl config current-context
-      - echo "--- DEBUG:cluster info ---"
-      - kubectl cluster-info
-      - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster
+
+      - echo "--- Applying deployment ---"
       - kubectl apply -f k8s/deployment.yaml
       - kubectl apply -f k8s/service.yaml
 
