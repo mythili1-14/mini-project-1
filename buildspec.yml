@@ -24,11 +24,11 @@ phases:
       - echo "Writing image tag to deployment.yaml..."
       - 'sed -i "s|image:.*|image: 551210489378.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:$IMAGE_TAG|" k8s/deployment.yaml'
       - echo "Deploying to EKS..."
-      - echo "--- DEBUG: deployment.yaml content ---"
+      - echo "--- DEBUG:deployment.yaml content ---"
       - cat k8s/deployment.yaml
-      - echo "--- DEBUG: current kubectl context ---"
+      - echo "--- DEBUG:current kubectl context ---"
       - kubectl config current-context
-      - echo "--- DEBUG: cluster info ---"
+      - echo "--- DEBUG:cluster info ---"
       - kubectl cluster-info
       - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster
       - kubectl apply -f k8s/deployment.yaml
