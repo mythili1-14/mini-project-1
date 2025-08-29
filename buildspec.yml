@@ -22,7 +22,7 @@ phases:
       - echo "Pushing the Docker image..."
       - docker push 551210489378.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:$IMAGE_TAG
       - echo "Writing image tag to deployment.yaml..."
-      - sed -i "s|image:.*|image: 551210489378.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:$IMAGE_TAG|" k8s/deployment.yaml
+      - 'sed -i "s|image:.*|image: 551210489378.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:$IMAGE_TAG|" k8s/deployment.yaml'
       - echo "Deploying to EKS..."
       - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster
       - kubectl apply -f k8s/deployment.yaml
