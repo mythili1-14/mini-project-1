@@ -13,12 +13,6 @@ phases:
       - export KUBECONFIG=/home/ubuntu/Brain-Tasks-App/config
       - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster
       - kubectl config view
-
-      - echo "Installing Docker and ensuring Docker daemon is running..."
-      - curl -fsSL https://get.docker.com/ | sh
-      - sudo systemctl enable docker
-      - sudo systemctl start docker
-      - sudo usermod -aG docker $USER
       - docker --version
       - docker info
 
