@@ -3,13 +3,15 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Installing kubectl and aws-iam-authenticator..."
+      - echo "###Debug Message-001:Installing kubectl and aws-iam-authenticator..."
       - curl -LO --fail "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" || echo "Failed to download kubectl...Retry...."
       - file kubectl
       - chmod +x kubectl
       - mv kubectl /usr/local/bin/
-      - echo "#################Verifying the installation.."
+      - echo "###Debug Message-002:Verifying the installation.."
       - kubectl version --client
+      - export KUBECONFIG=/home/ubuntu/Brain-Tasks-App/config
+      - kubectl config view
 
   pre_build:
     commands:
