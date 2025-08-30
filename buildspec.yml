@@ -29,20 +29,24 @@ phases:
 
   post_build:
     commands:
-      - echo "Pushing the Docker image..."
+      - echo "###Debug Message-006:Pushing the Docker image..."
       - docker push 551210489378.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:$IMAGE_TAG
-      - echo "Writing image tag to deployment.yaml..."
+      - echo "###Debug Message-007:Writing image tag to deployment.yaml..."
       - 'sed -i "s|image:.*|image: 551210489378.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:$IMAGE_TAG|" k8s/deployment.yaml'
-      - echo "Deploying to EKS..."
-      - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster
+      - echo "###Debug Message-008:Deploying to EKS..."
+      - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster --kubeconfig /root/.kube/config
 
-      - echo "--- DEBUG:deployment.yaml content ---"
+      - echo "###Debug Message-009:deployment.yaml content ---"
       - cat k8s/deployment.yaml
-      - echo "--- DEBUG:current kubectl context ---"
+      - echo "###Debug Message-010:current kubectl context ---"
       - kubectl config current-context
-      - echo "--- DEBUG:cluster info ---"
+      - echo "###Debug Message-011:cluster info and dump details ---"
       - kubectl cluster-info
-
+      - kubectl cluster-info dump
+      - echo "###Debug Message-012:Kubeconfig view ---"
+      - kubectl config view
+      - echo "###Debug Message-013:Print out the AWS account and IAM role in use by CodeBuild"
+      - aws sts get-caller-identity
       - kubectl apply -f k8s/deployment.yaml
       - kubectl apply -f k8s/service.yaml
 
