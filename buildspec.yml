@@ -31,13 +31,13 @@ pre_build:
 
       - export IMAGE_TAG=$(echo "$CODEBUILD_RESOLVED_SOURCE_VERSION" | cut -c 1-7)
 
-  build:
+build:
     commands:
       - echo "Build started on $(date)"
       - docker build -t brain-tasks-app:$IMAGE_TAG .
       - docker tag brain-tasks-app:$IMAGE_TAG 551210489378.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:$IMAGE_TAG
 
-  post_build:
+post_build:
     commands:
       - echo "###Debug Message-006:Pushing the Docker image..."
       - docker push 551210489378.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:$IMAGE_TAG
