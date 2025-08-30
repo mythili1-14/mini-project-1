@@ -11,6 +11,7 @@ phases:
       - echo "###Debug Message-002:Verifying the installation.."
       - kubectl version --client
       - export KUBECONFIG=/home/ubuntu/Brain-Tasks-App/config
+      - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster --kubeconfig /home/ubuntu/Brain-Tasks-App/config
       - kubectl config view
 
   pre_build:
@@ -52,9 +53,9 @@ phases:
       - echo "###Debug Message-013:Print out the AWS account and IAM role in use by CodeBuild"
       - aws sts get-caller-identity
 
-      - echo "###Debug Message-011:cluster info and dump details ---"
-      - kubectl cluster-info
-      - kubectl cluster-info dump
+#      - echo "###Debug Message-011:cluster info and dump details ---"
+#      - kubectl cluster-info
+#      - kubectl cluster-info dump
 
       - kubectl apply -f k8s/deployment.yaml --validate=false
       - kubectl apply -f k8s/service.yaml --validate=false
