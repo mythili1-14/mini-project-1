@@ -43,7 +43,7 @@ phases:
 
       - echo "###Debug Message-012:Kubeconfig view print the contents of the kubeconfig file. Check correct EKS cluster context and AWS IAM credentials shown below"
       - kubectl config view
-
+      - kubectl get nodes
       - echo "###Debug Message-009:deployment.yaml content ---"
       - cat k8s/deployment.yaml
 
