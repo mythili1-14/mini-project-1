@@ -15,8 +15,9 @@ phases:
       - kubectl config view
 
       - echo "Installing Docker and ensuring Docker daemon is running..."
-      - sudo service docker start
+      - curl -fsSL https://get.docker.com/ | sh
       - sudo systemctl enable docker
+      - sudo systemctl start docker
       - sudo usermod -aG docker $USER
       - docker --version
       - docker info
