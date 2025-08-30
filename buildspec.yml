@@ -38,7 +38,7 @@ phases:
       - echo "Deploying to EKS..."
       - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster
 
-      - echo "--- DEBUG: deployment.yaml content ---"
+      - echo "--- DEBUG:deployment.yaml content ---"
       - cat k8s/deployment.yaml
       - echo "--- DEBUG:current kubectl context ---"
       - kubectl config current-context
