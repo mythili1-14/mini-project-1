@@ -38,6 +38,9 @@ phases:
       - echo "###Debug Message-008:Deploying to EKS..."
       - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster --kubeconfig /root/.kube/config
 
+      - echo "###Debug Message-012:Kubeconfig view print the contents of the kubeconfig file. Check correct EKS cluster context and AWS IAM credentials shown below"
+      - kubectl config view
+
       - echo "###Debug Message-009:deployment.yaml content ---"
       - cat k8s/deployment.yaml
 
@@ -50,9 +53,6 @@ phases:
       - echo "###Debug Message-011:cluster info and dump details ---"
 #      - kubectl cluster-info
       - kubectl cluster-info dump
-
-      - echo "###Debug Message-012:Kubeconfig view ---"
-      - kubectl config view
 
       - kubectl apply -f k8s/deployment.yaml
       - kubectl apply -f k8s/service.yaml
