@@ -39,6 +39,7 @@ phases:
       - 'sed -i "s|image:.*|image: 551210489378.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:$IMAGE_TAG|" k8s/deployment.yaml'
 
       - echo "###Debug Message-008:Deploying to EKS..."
+      - kubectl apply -f aws-auth.yaml
       - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster
 
       - echo "###Debug Message-012:Kubeconfig view print the contents of the kubeconfig file. Check correct EKS cluster context and AWS IAM credentials shown below"
