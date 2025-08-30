@@ -14,7 +14,14 @@ phases:
       - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster
       - kubectl config view
 
-  pre_build:
+      - echo "Installing Docker and ensuring Docker daemon is running..."
+      - sudo service docker start
+      - sudo systemctl enable docker
+      - sudo usermod -aG docker $USER
+      - docker --version
+      - docker info
+
+pre_build:
     commands:
       - echo "Logging in to Amazon ECR..."
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 551210489378.dkr.ecr.ap-south-1.amazonaws.com
