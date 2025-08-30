@@ -21,7 +21,6 @@ phases:
   build:
     commands:
       - echo "Running build steps..."
-      # Add your build commands here if needed, or leave empty if not applicable
 
   post_build:
     commands:
