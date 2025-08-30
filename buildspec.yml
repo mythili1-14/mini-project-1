@@ -53,11 +53,11 @@ phases:
       - aws sts get-caller-identity
 
       - echo "###Debug Message-011:cluster info and dump details ---"
-#      - kubectl cluster-info
-#      - kubectl cluster-info dump
+      - kubectl cluster-info
+      - kubectl cluster-info dump
 
-      - kubectl apply -f k8s/deployment.yaml
-      - kubectl apply -f k8s/service.yaml
+      - kubectl apply -f k8s/deployment.yaml --validate=false
+      - kubectl apply -f k8s/service.yaml --validate=false
 
 artifacts:
   files:
