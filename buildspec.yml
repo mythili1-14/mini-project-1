@@ -52,7 +52,7 @@ phases:
 
       - echo "###Debug Message-011:cluster info and dump details ---"
 #      - kubectl cluster-info
-      - kubectl cluster-info dump
+#      - kubectl cluster-info dump
 
       - kubectl apply -f k8s/deployment.yaml
       - kubectl apply -f k8s/service.yaml
