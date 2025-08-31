@@ -15,3 +15,8 @@ data:
       username: codebuild-user
       groups:
         - system:masters
+
+    - rolearn: arn:aws:iam::551210489378:role/CodeDeployEC2Role
+      username: codedeploy-user
+      groups:
+        - system:masters
