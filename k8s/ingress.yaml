@@ -1,23 +1,25 @@
+# ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: brain-tasks-app-ingress
   namespace: default
   annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/load-balancer-name: brain-tasks-app-alb
+    alb.ingress.kubernetes.io/healthcheck-path: /
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing             # Use "internal" for internal ALB
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'       # Ports ALB listens on
-    alb.ingress.kubernetes.io/target-type: ip                      # Use "instance" if you want to target instance IDs
-    alb.ingress.kubernetes.io/healthcheck-path: /                  # Health check path, adjust if your app has a health endpoint
 spec:
-  ingressClassName: alb
   rules:
-    - http:
+      http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: brain-tasks-app-service                          # Replace with your actual service name
+                name: brain-tasks-app-service
                 port:
                   number: 80
