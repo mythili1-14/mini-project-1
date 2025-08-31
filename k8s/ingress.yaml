@@ -4,6 +4,7 @@ metadata:
   name: brain-tasks-app-ingress
   namespace: default
   annotations:
+    kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing             # Use "internal" for internal ALB
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'       # Ports ALB listens on
     alb.ingress.kubernetes.io/target-type: ip                      # Use "instance" if you want to target instance IDs
@@ -17,6 +18,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: brain-tasks-service                          # Replace with your actual service name
+                name: brain-tasks-app-service                          # Replace with your actual service name
                 port:
                   number: 80
