@@ -6,7 +6,7 @@ echo "Updating kubeconfig..."
 aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster
 
 # Annotate the AWS Load Balancer Controller service account
-ROLE_ARN="arn:aws:iam::551210489378:role/AWSLoadBalancerControllerIAMPolicy"
+ROLE_ARN="arn:aws:iam::551210489378:role/AWSLoadBalancerControllerRole"
 
 kubectl annotate serviceaccount \
   -n kube-system aws-load-balancer-controller \

@@ -1,20 +1,17 @@
-# ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: brain-tasks-app-ingress
-  namespace: default
   annotations:
+    kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/backend-protocol: HTTP
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    alb.ingress.kubernetes.io/load-balancer-name: brain-tasks-app-alb
     alb.ingress.kubernetes.io/healthcheck-path: /
-    kubernetes.io/ingress.class: alb
 spec:
+  ingressClassName: alb  # ✅ Add this line
   rules:
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
