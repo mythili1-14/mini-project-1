@@ -4,7 +4,7 @@ metadata:
   name: brain-tasks-app-service
   namespace: default
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: brain-tasks-app
   ports:
