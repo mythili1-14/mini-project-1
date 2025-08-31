@@ -1,0 +1,2 @@
+
+An error occurred (SubnetNotFound) when calling the CreateLoadBalancer operation: InvalidSubnetID.NotFound
