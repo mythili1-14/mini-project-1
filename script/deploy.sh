@@ -8,5 +8,6 @@ aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster
 echo "Applying Kubernetes manifests..."
 kubectl apply -f /app/k8s/deployment.yaml
 kubectl apply -f /app/k8s/service.yaml
+kubectl apply -f k8s/ingress.yaml
 
 echo "Deployment completed."
