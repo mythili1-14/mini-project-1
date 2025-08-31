@@ -10,6 +10,7 @@ metadata:
     alb.ingress.kubernetes.io/target-type: ip                      # Use "instance" if you want to target instance IDs
     alb.ingress.kubernetes.io/healthcheck-path: /                  # Health check path, adjust if your app has a health endpoint
 spec:
+  ingressClassName: alb
   rules:
     - http:
         paths:
