@@ -8,7 +8,7 @@ aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-app-cluster
 echo "Tagging subnets for ALB usage..."
 
 CLUSTER_NAME="brain-tasks-app-cluster"
-SUBNET_IDS=("subnet-0b7904bf2870d15da" "subnet-038d15c37dad6b59c" "subnet-0171623c1797f324a")  # Replace with your actual subnet IDs
+SUBNET_IDS=("subnet-0f800017b7a944bcb" "subnet-0891a249965fa4ffd")  # Replace with your actual subnet IDs
 
 for subnet in "${SUBNET_IDS[@]}"; do
   echo "Tagging subnet $subnet..."
