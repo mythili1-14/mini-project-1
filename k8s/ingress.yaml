@@ -9,11 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 3000}]'
     alb.ingress.kubernetes.io/healthcheck-path: /
 spec:
-<<<<<<< HEAD
-  ingressClassName: alb  # ✅ Add this line
-=======
   ingressClassName: alb
->>>>>>> 376cdc2 (changes)
   rules:
     - http:
         paths:
