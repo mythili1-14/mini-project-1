@@ -2,14 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: brain-tasks-app-service
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
-    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
 spec:
-  type: LoadBalancer
   selector:
     app: brain-tasks-app
+  type: ClusterIP
   ports:
     - protocol: TCP
-      port: 80          # Port exposed by Load Balancer
-      targetPort: 3000  # Port where your app is actually listening
+      port: 80
+      targetPort: 3000
+
