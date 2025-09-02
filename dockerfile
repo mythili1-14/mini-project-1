@@ -10,8 +10,11 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the app code
+# Copy rest of the app code
 COPY . .
+
+# Build React app (outputs to 'dist')
+RUN npm run build
 
 # Expose port 3000
 EXPOSE 3000
