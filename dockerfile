@@ -1,13 +1,17 @@
-FROM nginx:alpine
+# Use Node.js base image
+FROM node:18-alpine
 
-# Clean default nginx html
-RUN rm -rf /usr/share/nginx/html/*
+# Set working directory
+WORKDIR /app
 
-# Copy prebuilt frontend files from your repo (dist/)
-COPY dist /usr/share/nginx/html
+# Install 'serve' globally to serve static files
+RUN npm install -g serve
 
-# Expose default web port
-EXPOSE 80
+# Copy built frontend files from dist/
+COPY dist/ .
 
-# Start NGINX
-CMD ["nginx", "-g", "daemon off;"]
+# Expose port 3000
+EXPOSE 3000
+
+# Run the app with serve on port 3000
+CMD ["serve", "-s", ".", "-l", "3000"]
