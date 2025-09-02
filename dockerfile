@@ -1,14 +1,12 @@
-FROM nginx:alpine
+ FROM nginx:alpine
 
-# Clean default nginx html
+# Remove default nginx static files
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy prebuilt frontend files from your repo (dist/)
+# Copy built files into nginx static folder
 COPY dist /usr/share/nginx/html
 
-# Expose default web port
 EXPOSE 80
 
-
-# Start NGINX
 CMD ["nginx", "-g", "daemon off;"]
+
