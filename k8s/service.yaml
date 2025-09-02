@@ -5,9 +5,8 @@ metadata:
 spec:
   selector:
     app: brain-tasks-app
-  type: ClusterIP
+  type: LoadBalancer      # Change this from ClusterIP to LoadBalancer
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 3000
-
+      port: 80            # External port exposed by the LoadBalancer
+      targetPort: 3000    # Container port your app listens on
