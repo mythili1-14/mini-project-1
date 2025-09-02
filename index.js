@@ -6,6 +6,11 @@ const PORT = process.env.PORT || 3000;
 // Serve static files from the 'dist' folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 // Handle all other routes by sending back the React index.html file
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));

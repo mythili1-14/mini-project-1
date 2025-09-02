@@ -1,23 +1,14 @@
-# Use Node.js base image
-FROM node:18-alpine
+FROM nginx:alpine
 
-# Set working directory
-WORKDIR /app
+# Clean default nginx html
+RUN rm -rf /usr/share/nginx/html/*
 
-# Copy dependency definitions
-COPY package*.json ./
+# Copy prebuilt frontend files from your repo (dist/)
+COPY dist /usr/share/nginx/html
 
-# Install dependencies
-RUN npm install
+# Expose default web port
+EXPOSE 80
 
-# Copy rest of the app code
-COPY . .
 
-# Build React app (outputs to 'dist')
-RUN npm run build
-
-# Expose port 3000
-EXPOSE 3000
-
-# Run the app
-CMD ["npm", "start"]
+# Start NGINX
+CMD ["nginx", "-g", "daemon off;"]
